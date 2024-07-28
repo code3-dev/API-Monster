@@ -16,6 +16,11 @@ RewriteCond %{REQUEST_FILENAME}/index.cgi !-f
 # Then return a 403 Forbidden error
 RewriteRule ^ - [F]
 
+# If the requested URL is a PHP file directly
+RewriteCond %{REQUEST_FILENAME} \.php$
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteRule ^(.*)$ /routes/errors/404.html [L]
+
 # If the requested URL is not a file
 RewriteCond %{REQUEST_FILENAME} !-f
 
